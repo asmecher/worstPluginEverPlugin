@@ -11,7 +11,5 @@
  *
  */
 
-require_once('WorstPluginEverPlugin.inc.php');
-
-return new WorstPluginEverPlugin();
+return new \APP\plugins\generic\worstPluginEverPlugin\WorstPluginEverPlugin();
 

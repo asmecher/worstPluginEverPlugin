@@ -11,7 +11,11 @@
  * @brief A very badly behaved plugin.
  */
 
-import('lib.pkp.classes.plugins.GenericPlugin');
+namespace APP\plugins\generic\worstPluginEverPlugin;
+
+use PKP\plugins\GenericPlugin;
+use PKP\plugins\Hook;
+use PKP\config\Config;
 
 class WorstPluginEverPlugin extends GenericPlugin {
 	/**
@@ -19,7 +23,7 @@ class WorstPluginEverPlugin extends GenericPlugin {
 	 */
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
-			HookRegistry::register('Templates::Search::SearchResults::PreResults', [$this, 'treacherousHook']);
+			Hook::register('Templates::Search::SearchResults::PreResults', [$this, 'treacherousHook']);
 			if ($this->getEnabled($mainContextId)) {
 				if (Config::getVar('misbehaviour', 'die_immediately')) {
 					dieScreaming();
@@ -31,7 +35,7 @@ class WorstPluginEverPlugin extends GenericPlugin {
 	}
 
 	function treacherousHook($hookName, $args) {
-		throw new Exception('I\'m having a tantrum');
+		throw new \Exception('I\'m having a tantrum');
 		return true;
 	}
 

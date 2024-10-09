@@ -19,6 +19,7 @@ class WorstPluginEverPlugin extends GenericPlugin {
 	 */
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
+			HookRegistry::register('Templates::Search::SearchResults::PreResults', [$this, 'treacherousHook']);
 			if ($this->getEnabled($mainContextId)) {
 				if (Config::getVar('misbehaviour', 'die_immediately')) {
 					dieScreaming();
@@ -27,6 +28,11 @@ class WorstPluginEverPlugin extends GenericPlugin {
 			return true;
 		}
 		return false;
+	}
+
+	function treacherousHook($hookName, $args) {
+		throw new Exception('I\'m having a tantrum');
+		return true;
 	}
 
 	/**

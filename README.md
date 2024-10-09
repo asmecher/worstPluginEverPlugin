@@ -8,4 +8,7 @@ This plugin will break in certain ways depending on your config.inc.php configur
 
 ; Call an unknown function immediately when the plugin is registered.
 die_immediately = On
+
+; Die on in a template hook in the search results area
+die_with_template = On
 ```

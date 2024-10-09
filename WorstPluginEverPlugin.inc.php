@@ -20,7 +20,9 @@ class WorstPluginEverPlugin extends GenericPlugin {
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			if ($this->getEnabled($mainContextId)) {
-				DieScreaming();
+				if (Config::getVar('misbehaviour', 'die_immediately')) {
+					dieScreaming();
+				}
 			}
 			return true;
 		}
